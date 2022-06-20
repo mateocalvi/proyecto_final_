@@ -1,0 +1,74 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <meta http-equiv="x-ua-compatible" content="ie=edge" />
+  <title>Landing page</title>
+  <!-- MDB icon -->
+  <link rel="icon" href={% static "img/mdb-favicon.ico" %} type="image/x-icon" />
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css" />
+  <!-- Google Fonts Roboto -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" />
+  <!-- MDB -->
+  <link rel="stylesheet" href={% static "css/mdb.min.css" %} />
+  <style>
+  </style>
+</head>
+
+<body>
+  <!-- Start your project here-->
+  <div>
+    <div data-draggable="true" style="position: relative;" draggable="false" class="">
+      <!---->
+      <!---->
+
+        <!---->
+      </div>
+      <div id="intro" class="bg-image vh-100 shadow-1-strong">
+        <video style="min-width: 100%; min-height: 100%; max-width: 75%;" playsinline autoplay muted loop>
+          <source class="h-100 w-100" src="{% static 'video\Film_Reel.mp4' %}" type="video/mp4" />
+        </video>
+        <div class="mask d-flex" style="background: linear-gradient(45deg, rgba(29, 236, 197, 0.7), rgba(91, 14, 214, 0.7) 75%);">
+          <!---->
+          <!---->
+          <section draggable="false" class="container pt-5 align-self-center" data-v-271253ee="">
+            
+            <section class="mb-10 text-center"> 
+              <div data-draggable="true" style="
+              position: relative; 
+              background-color: rgba(0,0,0,0.65);
+              border-radius: 55px" draggable="false" class="">
+              <div class="px-4 py-5 px-md-5"> 
+                <h2 class="my-5 display-5 fw-bold ls-tight"> 
+                  <span style="font-size: 7vw;">Bienvenido</span> <br> 
+                  <span class="text-primary fs-2">Listo para llevar un control de tus películas favoritas?</span>  <!-- text-primary -->
+                </h2> 
+                <a class="btn btn-primary btn-lg py-3 px-5 mb-2 me-2" href="{% url 'main_page' %}" role="button" aria-controls="#picker-editor" draggable="false">Entrar
+                  <i class="fas fa-dungeon p-1 ps-2"></i>
+                </a> 
+                <a class="btn btn-link btn-lg py-3 px-5 mb-2 me-2" style="color:lightgrey" data-ripple-color="primary" href="{% url 'login' %}" role="button" aria-controls="#picker-editor" draggable="false">Iniciar sesión
+                  <i class="fas fa-sign-in-alt p-1 ps-2"></i>
+                </a> 
+              </div> 
+            </section>
+          </section>
+          <!---->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <!-- End your project here-->
+
+  <!-- MDB -->
+  <script type="text/javascript" src={% static "js/mdb.min.js" %}></script>
+  <!-- Custom scripts -->
+  <script type="text/javascript"></script>
+</body>
+
+</html>
