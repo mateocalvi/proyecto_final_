@@ -5,6 +5,6 @@ urlpatterns = [
     # path('', httpResponse, name='httpResponse'),
     path('',landing_page, name='landing_page'),
     path('main/', main_page, name='main_page'),
-    path('signin/', sign_in, name='signin'),
+    path('signup/', signup, name='signup'),
     path('login/', login, name='login'),
 ]
