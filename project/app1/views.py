@@ -47,11 +47,11 @@ def register(request):
     return render(
         request=request,
         context={"form":form},
-        template_name="login/login.html",
+        template_name="user/register.html",
     )
 
 
-def login_request(request):
+def login_request(request): ##Validación de datos ingresados, para saber si mantengo sesion iniciada .
     if request.method == "POST":
         form = AuthenticationForm(request, data=request.POST)
         if form.is_valid():
@@ -60,17 +60,22 @@ def login_request(request):
             user = authenticate(username=username, password=password)
             if user is not None:
                 login(request, user)
-                return redirect("home:main")
+                return redirect("home:main")    #Si los datos ingresados son correctos, voy al main.
 
         return render(
             request=request,
             context={'form': form},
-            template_name="login/login.html",
+            template_name="user/login.html",       
         )
 
-    form = AuthenticationForm()
+    form = AuthenticationForm()     #Si los datos ingresados están mal, return nuevamente al login-
     return render(
         request=request,
         context={'form': form},
-        template_name="login/login.html",
+        template_name="user/login.html",
     )
+
+
+def logout_request(request):  ##Cerrar sesión del usuario activo
+      logout(request)
+      return redirect("user:user-login")
