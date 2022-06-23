@@ -3,7 +3,7 @@
 {% load i18n %}
   <div id="preview" class="d-flex">
     <div>
-      <div data-draggable="true" class="bg-dark justify-content-center" style="position: relative; border-radius: 15px;" draggable="false">
+      <div data-draggable="true" class="bg-dark justify-content-center rounded-5" style="position: relative;" draggable="false">
         <!---->
         <!---->
         <section draggable="false" class="overflow-hidden pt-0 align-self-center" data-v-271253ee="">
@@ -25,85 +25,91 @@
                     <div class="card">
                       <div class="card-body py-5 px-md-5">
                         <!-- FORMULARIO -->
-                        <form method="POST" action="."> {% csrf_token %}
+                        <form method="POST" action=""> {% csrf_token %}
                           <!-- 2 column grid layout with text inputs for the first and last names -->
-                            <div class="row">
-                              <div class="col-md-6 form-outline mb-4">
-                                <input type="text" id="{{ form.first_name.id_for_label }}" class="form-control active" required value="{% if form.first_name.value %}{{ form.first_name.value }}{% endif %}"/> 
-                                <label class="form-label" for="{{form.first_name.id_for_label}}" style="margin-left: 0px">Nombre</label>
-                                <div class="form-notch">
-                                  <div class="form-notch-leading" style="width: 9px"></div>
-                                  <div class="form-notch-middle" style="width: 52.8px"></div>
-                                  <div class="form-notch-trailing"></div>
-                                </div>
+                          <div class="row">
+                            <div class="col form-outline mb-4 me-3">
+                              <input type="text" id="{{ form.first_name.id_for_label }}" class="form-control active" required /> 
+                              <label class="form-label" for="{{form.first_name.id_for_label}}" style="margin-left: 0px" value="{% if form.first_name.value %}{{ form.first_name.value }}{% endif %}">Nombre</label>
+                              <div class="form-notch">
+                                <div class="form-notch-leading" style="width: 9px"></div>
+                                <div class="form-notch-middle" style="width: 52.8px"></div>
+                                <div class="form-notch-trailing"></div>
                               </div>
-                              <div class="col-md-6 form-outline mb-4">
-                                <input type="text" id="{{ form.last_name.id_for_label }}" class="form-control active" required value="{% if form.last_name.value %}{{ form.last_name.value }}{% endif %}"/> 
-                                <label class="form-label" for="{{form.last_name.id_for_label}}" style="margin-left: 0px">Apellido</label>
-                                <div class="form-notch">
-                                  <div class="form-notch-leading" style="width: 9px"></div>
-                                  <div class="form-notch-middle" style="width: 52.8px"></div>
-                                  <div class="form-notch-trailing"></div>
-                                </div>
+                            </div>
+                            <div class="col form-outline mb-4">
+                              <input type="text" id="{{ form.last_name.id_for_label }}" class="form-control active" required > 
+                              <label class="form-label" for="{{form.last_name.id_for_label}}" style="margin-left: 0px" value="{% if form.last_name.value %}{{ form.last_name.value }}{% endif %}"/>Apellido</label>
+                              <div class="form-notch">
+                                <div class="form-notch-leading" style="width: 9px"></div>
+                                <div class="form-notch-middle" style="width: 52.8px"></div>
+                                <div class="form-notch-trailing"></div>
                               </div>
-                          <div class="form-outline mb-2" >
-                            {{ form.username.errors }}
-                            <input type="text" id="{{ form.username.id_for_label }}" class="form-control active" required value="{% if form.username.value %}{{ form.username.value }}{% endif %}"/> 
-                            <label class="form-label" for="{{form.username.id_for_label}}" style="margin-left: 0px">Nombre de usuario</label>
-                            <div class="form-notch">
-                              <div class="form-notch-leading" style="width: 9px"></div>
-                              <div class="form-notch-middle" style="width: 114.8px"></div>
-                              <div class="form-notch-trailing"></div>
                             </div>
+                        <div class="form-outline mb-2" >
+                          {{ form.username.errors }}
+                          <input type="text" id="{{ form.username.id_for_label }}" class="form-control active" required /> 
+                          <label class="form-label" for="{{form.username.id_for_label}}" style="margin-left: 0px" value="{% if form.username.value %}{{ form.username.value }}{% endif %}">Nombre de usuario</label>
+                          <div class="form-notch">
+                            <div class="form-notch-leading" style="width: 9px"></div>
+                            <div class="form-notch-middle" style="width: 114.8px"></div>
+                            <div class="form-notch-trailing"></div>
                           </div>
-                          {% if form.username.help_text %}
-                          <small class="text-muted mb-4">{{ form.username.help_text }}</small>
-                          {% endif %}
-                          <!-- Email input -->
-                          <div class="form-outline {% if form.email.help_text %}mb-2{% else %}mb-4{% endif %}">
-                            {{ form.email.errors }}
-                            <input type="text" id="{{ form.email.id_for_label }}" class="form-control active" required value="{% if form.email.value %}{{ form.email.value }}{% endif %} "/> 
-                            <label class="form-label" for="{{form.email.id_for_label}}" style="margin-left: 0px">Email</label>
-                            <div class="form-notch">
-                              <div class="form-notch-leading" style="width: 9px"></div>
-                              <div class="form-notch-middle" style="width: 40px"></div>
-                              <div class="form-notch-trailing"></div>
-                            </div>
-                          </div>
-                          {% if form.email.help_text %}
-                          <small class="text-muted mb-4">{{ form.email.help_text }}</small>
-                          {% endif %}
-                          <!-- Password input -->
-                          <div class="form-outline mb-2">
-                            {{ form.password.errors }}
-                            <input type="text" id="{{ form.password1.id_for_label }}" class="form-control active" required value="{% if form.password1.value %}{{ form.password1.value }}{% endif %} "/> 
-                            <label class="form-label" for="{{form.password1.id_for_label}}" style="margin-left: 0px">Contraseña</label>
-                            <div class="form-notch">
-                              <div class="form-notch-leading" style="width: 9px"></div>
-                              <div class="form-notch-middle" style="width: 72.8px"></div>
-                              <div class="form-notch-trailing"></div>
-                            </div>
-                          </div>
-                          {% if form.password1.help_text %}
-                          <small class="text-muted mb-4">{{ form.password1.help_text }}</small>
-                          {% endif %}
-                          <!-- Second Password input -->
-                          <div class="form-outline mb-2">
-                            <input type="text" id="{{ form.password2.id_for_label }}" class="form-control active" required{ value="{% if form.password2.value %}{{ form.password2.value }}{% endif %} "/> 
-                            <label class="form-label" for="{{form.password2.id_for_label}}" style="margin-left: 0px">Verifique su contraseña</label>
-                            <div class="form-notch">
-                              <div class="form-notch-leading" style="width: 9px"></div>
-                              <div class="form-notch-middle" style="width: 142.8px"></div>
-                              <div class="form-notch-trailing"></div>
-                            </div>
-                          </div>
-                          {% if form.password2.help_text %}
-                          <small class="text-muted mb-4">{{ form.password2.help_text }}</small>
-                          {% endif %}
-                          <!-- Submit button -->
-                          <button type="submit" class="btn btn-primary btn-block mb-4" aria-controls="#" >Registrarse</button>
                         </div>
-                        </form>
+                        {% if form.username.help_text %}
+                        <small class="text-muted mb-4">{{ form.username.help_text }}</small>
+                        {% endif %}
+                        <!-- Email input -->
+                        <div class="form-outline {% if form.email.help_text %}mb-2{% else %}mb-4{% endif %}">
+                          {{ form.email.errors }}
+                          <input type="text" id="{{ form.email.id_for_label }}" class="form-control active" required /> 
+                          <label class="form-label" for="{{form.email.id_for_label}}" style="margin-left: 0px" value="{% if form.email.value %}{{ form.email.value }}{% endif %} ">Email</label>
+                          <div class="form-notch">
+                            <div class="form-notch-leading" style="width: 9px"></div>
+                            <div class="form-notch-middle" style="width: 40px"></div>
+                            <div class="form-notch-trailing"></div>
+                          </div>
+                        </div>
+                        {% if form.email.help_text %}
+                        <small class="text-muted mb-4">{{ form.email.help_text }}</small>
+                        {% endif %}
+                        <!-- Password input -->
+                        <div class="form-outline mb-2">
+                          {{ form.password.errors }}
+                          <input type="text" id="{{ form.password1.id_for_label }}" class="form-control active" required /> 
+                          <label class="form-label" for="{{form.password1.id_for_label}}" style="margin-left: 0px" value="{% if form.password1.value %}{{ form.password1.value }}{% endif %} ">Contraseña</label>
+                          <div class="form-notch">
+                            <div class="form-notch-leading" style="width: 9px"></div>
+                            <div class="form-notch-middle" style="width: 72.8px"></div>
+                            <div class="form-notch-trailing"></div>
+                          </div>
+                        </div>
+                        {% if form.password1.help_text %}
+                        <small class="text-muted mb-4">{{ form.password1.help_text }}</small>
+                        {% endif %}
+                        <!-- Second Password input -->
+                        <div class="form-outline mb-2">
+                          <input type="text" id="{{ form.password2.id_for_label }}" class="form-control active" required /> 
+                          <label class="form-label" for="{{form.password2.id_for_label}}" style="margin-left: 0px" value="{% if form.password2.value %}{{ form.password2.value }}{% endif %} ">Verifique su contraseña</label>
+                          <div class="form-notch">
+                            <div class="form-notch-leading" style="width: 9px"></div>
+                            <div class="form-notch-middle" style="width: 142.8px"></div>
+                            <div class="form-notch-trailing"></div>
+                          </div>
+                        </div>
+                        {% if form.password2.help_text %}
+                        <small class="text-muted mb-4">{{ form.password2.help_text }}</small>
+                        {% endif %}
+                        <!-- Submit button -->
+                        <button type="submit" class="btn btn-primary btn-block mb-4" aria-controls="#" >Registrarse</button>
+                        <p class="content-justify-center">Ya tienes cuenta? <a href="{% url 'login' %}">Inicia sesión</a></p>
+                      </div> 
+                      {% comment  %}
+                      {{ form.as_table }}
+                      <button type="submit" class="btn btn-primary btn-block mb-4" aria-controls="#" >Registrarse</button>
+                      <p class="content-justify-center">Ya tienes cuenta? <a href="{% url 'login' %}">Inicia sesión</a></p>
+                      {% endcomment %}
+                      </form>
                       </div>
                     </div>
                   </div>

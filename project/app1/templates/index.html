@@ -52,14 +52,15 @@
         <form class="w-auto">
           <div class="input-group">
             <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
-            <button type="button" class="btn btn-outline-primary">search</button>
+            <button type="button" class="btn btn-outline-primary me-4">search</button>
           </div>
         </form>
           <!-- Collapsible wrapper --> 
           <!-- Right elements --> 
           <div class="d-flex align-items-center"> 
-            <a type="button" class="btn btn-link px-3 mb-1 me-2" href="{% url 'signup' %}" aria-controls="#picker-editor" style="min-width: auto;">Registrarse</a> 
-            <a type="button" class="btn btn-primary mb-1 me-lg-3" href="{% url 'login' %}" aria-controls="#picker-editor" style="min-width: auto;">Iniciar Sesión<i class="fas fa-sign-in-alt p-1"></i></a> 
+            <a type="button" class="btn btn-link px-3 mb-1 me-2" href="{% url 'signup' %}" aria-controls="#picker-editor" style="min-height: 100%;">Registrarse</a> 
+            <a type="button" class="btn btn-primary mb-1 me-2" href="{% url 'login' %}" aria-controls="#picker-editor" style="min-width: auto;">Iniciar Sesión  <i class="fas fa-sign-in-alt p-0"></i></a> 
+            <a type="button" class="btn btn-outline-danger px-3 mb-1" href="{% url 'logout' %}" aria-controls="#picker-editor" style="min-width: auto;">Cerrar Sesión  <i class="fas fa-sign-out-alt p-0"></i></a> 
           </div> 
           <!-- Right elements --> 
         </div> 

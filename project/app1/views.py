@@ -1,7 +1,3 @@
-from multiprocessing import context
-from django.shortcuts import render
-
-
 import os
 from django.contrib import messages
 from django.contrib.auth.forms import AuthenticationForm
@@ -26,34 +22,55 @@ def landing_page(request):
     return render(request, 'landing_page.html')
 
 def main_page(request):
-    if request.user.is_authenticated:
-        usuario = Usuario.objects.all()
-        context = {'usuario': usuario}
-        return render(request, 'films_page.html', context)
-
+    # if request.user.is_authenticated:
+    #     usuario = Usuario.objects.all()
+    #     context = {'usuario': usuario}
+    #     return render(request, 'films_page.html')
     return render(request, 'films_page.html')
 
-def sign_in(request):
-    return render(request, 'forms\\login\\sign_in.html')
+def login_request(request):
+    if request.method == 'POST': 
+        form = AuthenticationForm(request.POST)
+        if form.is_valid():
+            username = form.cleaned_data.get('username')
+            password = form.cleaned_data.get('password')
+            user = authenticate(username=username, password=password)
+            if user is not None:
+                login(request, user)
+                messages.info(request, f'Estás logueado como {username}')
+                return redirect('main_page')
+            else:
+                messages.error(request, 'Usuario o contraseña erróneos')
+        else:
+            messages.error(request, 'Usuario o contraseña erróneos')
+        
+       
+    form = AuthenticationForm()
+    context = {'form':form}
+    return render(request, 'forms\\login\\login.html', context)
 
-def login(request):
-    return render(request, 'forms\\login\\login.html')
+def logout_request(request):
+    logout(request)
+    messages.info(request, 'Sesión cerrada exitosamente')
+    return redirect('main_page')
 
 # TODO hacer una función que me permita desloguearse
 
 def signup(request):
-    form = SignUpForm(request.POST or None)
-    if request.method == 'POST' and form.is_valid():
-        username = form.cleaned_data.get('username')
-        password = form.cleaned_data.get('password1')
-        form.save()
-        new_user = authenticate(username=username, password=password)
-        if new_user is not None:
-            login(request, new_user)
-            return redirect('main_page')
-    else:
-        form = SignUpForm()
-        return redirect('main_page')
+    if request.method == 'POST':
+        form = SignUpForm(request.POST)
+        if form.is_valid():
+            usuario = form.save()
+            username = form.cleaned_data.get('username')
+            password = form.cleaned_data.get('password1')
+            new_user = authenticate(username=username, password=password)
+            if new_user is not None:
+                login(request, new_user)
+                return redirect('main_page')
+            else:
+                messages.error(request, 'Alguno de los datos ingresados contiene errores')
+
+    form = SignUpForm
 
     context = {'form': form}
     
