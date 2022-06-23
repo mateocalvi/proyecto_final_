@@ -39,21 +39,21 @@
           <section draggable="false" class="container pt-5 align-self-center" data-v-271253ee="">
             
             <section class="mb-10 text-center"> 
-              <div data-draggable="true" style="
-              position: relative; 
-              background-color: rgba(0,0,0,0.65);
-              border-radius: 55px" draggable="false" class="">
+              <div data-draggable="true" style="position: relative; background-color: rgba(0,0,0,0.65);border-radius: 55px" draggable="false" class="">
               <div class="px-4 py-5 px-md-5"> 
                 <h2 class="my-5 display-5 fw-bold ls-tight"> 
                   <span style="font-size: 7vw;">Bienvenido</span> <br> 
-                  <span class="text-primary fs-2">Listo para llevar un control de tus películas favoritas?</span>  <!-- text-primary -->
+                  <span class="text-primary fs-2">Listo para llevar un control de tus películas favoritas?</span>
                 </h2> 
-                <a class="btn btn-primary btn-lg py-3 px-5 mb-2 me-2" href="{% url 'main_page' %}" role="button" aria-controls="#picker-editor" draggable="false">Entrar
+                {% if user.is_authenticated %}
+                <a class="btn btn-primary btn-lg py-3 px-5 mb-2 me-2" href="{% url 'main' %}" role="button" aria-controls="#picker-editor" draggable="false">Entrar
                   <i class="fas fa-dungeon p-1 ps-2"></i>
                 </a> 
-                <a class="btn btn-link btn-lg py-3 px-5 mb-2 me-2" style="color:lightgrey" data-ripple-color="primary" href="{% url 'login' %}" role="button" aria-controls="#picker-editor" draggable="false">Iniciar sesión
+                {% elif not user.is_authenticated %}
+                <a class="btn btn-outline-primary btn-lg py-3 px-5 mb-2 me-2" style="color:lightgrey" data-ripple-color="primary" href="{% url 'login' %}" role="button" aria-controls="#picker-editor" draggable="false">Iniciar sesión
                   <i class="fas fa-sign-in-alt p-1 ps-2"></i>
                 </a> 
+                {% endif %}
               </div> 
             </section>
           </section>

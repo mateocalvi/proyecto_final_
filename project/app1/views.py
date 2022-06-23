@@ -18,15 +18,19 @@ from django.http import HttpResponse
 # def httpResponse(request):
     # return HttpResponse("Hello, world. You're at the app1 index.")
 
+
 def landing_page(request):
     return render(request, 'landing_page.html')
 
-def main_page(request):
+
+@login_required
+def main(request):
     # if request.user.is_authenticated:
     #     usuario = Usuario.objects.all()
     #     context = {'usuario': usuario}
     #     return render(request, 'films_page.html')
     return render(request, 'films_page.html')
+
 
 def login_request(request):
     if request.method == 'POST': 
@@ -37,38 +41,43 @@ def login_request(request):
             user = authenticate(username=username, password=password)
             if user is not None:
                 login(request, user)
-                messages.info(request, f'Estás logueado como {username}')
-                return redirect('main_page')
+                # messages.info(request, f'Estás logueado como {username}')
+                return redirect('main')
             else:
-                messages.error(request, 'Usuario o contraseña erróneos')
+                # messages.error(request, 'Usuario o contraseña erróneos')
+                pass
         else:
-            messages.error(request, 'Usuario o contraseña erróneos')
+            # messages.error(request, 'Usuario o contraseña erróneos')
+            pass
         
        
     form = AuthenticationForm()
     context = {'form':form}
     return render(request, 'forms\\login\\login.html', context)
 
+
 def logout_request(request):
     logout(request)
-    messages.info(request, 'Sesión cerrada exitosamente')
-    return redirect('main_page')
+    # messages.info(request, 'Sesión cerrada exitosamente')
+    return redirect('landing_page')
 
 # TODO hacer una función que me permita desloguearse
+
 
 def signup(request):
     if request.method == 'POST':
         form = SignUpForm(request.POST)
         if form.is_valid():
-            usuario = form.save()
+            form.save(commit=True)
             username = form.cleaned_data.get('username')
             password = form.cleaned_data.get('password1')
             new_user = authenticate(username=username, password=password)
             if new_user is not None:
                 login(request, new_user)
-                return redirect('main_page')
+                return redirect('main')
             else:
-                messages.error(request, 'Alguno de los datos ingresados contiene errores')
+                # messages.error(request, 'Alguno de los datos ingresados contiene errores')
+                pass
 
     form = SignUpForm
 
@@ -77,6 +86,7 @@ def signup(request):
     return render(request, 'forms\\login\\sign_in.html', context)
 
 
+# 
 # def login_request(request):
 #     if request.method == "POST":
 #         form = AuthenticationForm(request, data=request.POST)

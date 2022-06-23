@@ -1,5 +1,5 @@
 from django import forms
-from django.forms import ModelForm
+from django.forms import ModelForm, PasswordInput
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django.contrib.auth.models import User
 
@@ -12,7 +12,7 @@ from app1.models import Avatar, Usuario
 #     password1 = forms.CharField(label='Contraseña', widget=forms.PasswordInput)
 #     password2 = forms.CharField(label='Repetir la contraseña', widget=forms.PasswordInput)
 
-
+# TODO: Implementar lo del video https://youtu.be/pAtG2m_mf4g?t=3843
 class SignUpForm(UserCreationForm):
     first_name = forms.CharField(label='Nombre', min_length=2)
     last_name = forms.CharField(label="Apellido", min_length=2)
@@ -30,13 +30,21 @@ class SignUpForm(UserCreationForm):
             'password1', 
             'password2',
             ]
+        widgets = {
+            'first_name' : forms.TextInput(attrs={"class":"text-capitalize form-control", 'required':'required'}),
+            'last_name' : forms.TextInput(attrs={"class":"text-capitalize form-control", 'required':'required'}),
+            'username' : forms.TextInput(attrs={"class":"form-control", 'required':'required'}), 
+            # 'email' : forms.EmailField(),
+            'password1' : forms.PasswordInput(attrs={"class":"form-control", 'required':'required'}), 
+            'password2' : forms.PasswordInput(attrs={"class":"form-control", 'required':'required'}),
+        }
 
 
 class UserEditForm(UserChangeForm):
     contrasena = None
 
     class Meta:
-        model = User
+        model = Usuario
         fields = ['email', ] # 'nombre', 'apellido'
         widgets = {
             'email': forms.TextInput(attrs={'readonly': 'readonly'}),

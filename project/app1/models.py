@@ -6,7 +6,7 @@ class Usuario(models.Model):
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
     username = models.CharField(max_length=50)
-    email = models.EmailField(max_length=100)
+    email = models.EmailField(max_length=50)
     password1 = models.CharField(max_length=50)
     password2 = models.CharField(max_length=50)
     thumbnail = models.ImageField(upload_to='images/', default='images/default.png')
